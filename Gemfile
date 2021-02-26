@@ -46,3 +46,6 @@ gem 'rest-client'
 gem 'dotenv-rails'
 gem 'geocoder'
 gem 'active_model_serializers', '~> 0.10.2'
+gem "jwt", "~> 2.2"
+
+gem "faker", "~> 2.16"
