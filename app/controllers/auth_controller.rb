@@ -5,18 +5,18 @@ class AuthController < ApplicationController
       user = User.find_by(username: params[:username])
       if user && user.authenticate(params[:password])
         my_token = encode_token({user_id: user.id})
-        render json: {id: user.id, username: user.username, token: my_token}
+        render json: { user: UserSerializer.new(user), token: my_token}
       else
         render json: {error: 'That user could not be found'}, status: 401
       end
     end
   def show
-    render json: {id: @user.id, username: @user.username}
+    render json: { user: UserSerializer.new(current_user) }
   end
 
   private
     def user_login_params
       # params { user: {username: 'Chandler Bing', password: 'hi' } }
-      params.require(:user).permit(:username, :password)
+      params.permit(:username, :password)
     end
 end
