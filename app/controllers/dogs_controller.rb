@@ -7,4 +7,15 @@ class DogsController < ApplicationController
       render json: dogs
     end
 
+    def create
+      dog = Dog.create(dog_params)
+      render json: dog
+    end
+
+    private
+
+    def dog_params
+      params.require(:dog).permit(:name, :weight, :breed, :age, :user_id)
+    end 
+
 end
