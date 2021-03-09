@@ -2,16 +2,17 @@ class DogTripsController < ApplicationController
     skip_before_action :authorized
 
     def create
+      byebug
       params[:dogs].each do |dog|
-        DogTrip.create(dog_id: dog[:id], trip_id: dog_trip_params[:trip_id])
+        DogTrip.create(dog_id: dog[:id], trip_id: params[:trip_id])
       end
     render json: { user: UserSerializer.new(current_user) }
 
     end
 
-    private
+    # private
 
-    def dog_trip_params
-      params.require(:dog_trip).permit(:dog_id, :trip_id)
-    end    
+    # def dog_trip_params
+    #   params.require(:dog_trip).permit(:dog_id, :trip_id)
+    # end    
 end
