@@ -9,7 +9,7 @@ class DogsController < ApplicationController
 
     def create
       dog = Dog.create(dog_params)
-      render json: dog
+      render json: { user: UserSerializer.new(current_user) }
     end
 
     private

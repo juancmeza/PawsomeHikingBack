@@ -2,8 +2,11 @@ class DogTripsController < ApplicationController
     skip_before_action :authorized
 
     def create
-      dog_trip = DogTrip.create(dog_trip_params)
-      render json: dog_trip
+      params[:dogs].each do |dog|
+        DogTrip.create(dog_id: dog[:id], trip_id: dog_trip_params[:trip_id])
+      end
+    render json: { user: UserSerializer.new(current_user) }
+
     end
 
     private
