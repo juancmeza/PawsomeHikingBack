@@ -5,7 +5,12 @@ class TripsController < ApplicationController
 
     def index
         trips = Trip.all
-        render json: trips        
+        render json: trips
+    end
+
+    def index2
+        trips = Trip.all
+        render json: trips
     end
 
 end
